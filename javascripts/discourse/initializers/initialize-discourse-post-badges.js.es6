@@ -51,6 +51,7 @@ export default {
       const isMobileView = Discourse.Site.currentProp("mobileView");
       const location = isMobileView ? "before" : "after";
 
+      console.log('plugin initialized');
       api.decorateWidget(`poster-name:${location}`, decorator => {
         const username = decorator.attrs.username;
         loadUserSolutions(username).then(solutions =>
