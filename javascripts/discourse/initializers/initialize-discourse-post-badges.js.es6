@@ -10,7 +10,7 @@ function buildBadge(solutions) {
   badge.href = `/u/${solutions.username}/activity/solved`;
   badge.classList.add("poster-icon");
   badge.setAttribute("title", `${solutions.count} accepted answer${solutions.count > 1 ? 's' : ''}`);
-  badge.insertAdjacentText('beforeend', `${count} `)
+  badge.insertAdjacentText('beforeend', `${solutions.count} `)
   badge.insertAdjacentHTML('beforeend', icon);
   return badge;
 }
