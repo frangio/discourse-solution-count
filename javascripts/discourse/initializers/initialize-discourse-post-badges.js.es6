@@ -53,7 +53,7 @@ export default {
           appendSolutions(solutions, decorator)
         );
 
-        return decorator.h("div.poster-solutions-container", {}, []);
+        return decorator.h("span.poster-solutions-container", {}, []);
       });
     });
   }
