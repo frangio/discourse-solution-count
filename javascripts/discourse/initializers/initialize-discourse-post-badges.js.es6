@@ -11,7 +11,9 @@ function buildBadge(solutions) {
   const span = document.createElement("span");
   span.classList.add("poster-icon");
   span.setAttribute("title", `${solutions.count} accepted answers`);
-  span.innerHTML = icon;
+  span.insertAdjacentHTML('beforeend', icon);
+  span.lastElementChild.style.color = 'green';
+  span.insertAdjacentText('beforeend', ' ')
   span.appendChild(count);
   return span;
 }
