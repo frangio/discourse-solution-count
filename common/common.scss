@@ -30,9 +30,12 @@
       color: var(--primary-med-or-secondary-med);
 
       .d-icon-check-square {
-        color: green;
         opacity: .6;
         margin-right: .25em;
+      }
+
+      &:hover .d-icon-check-square {
+        color: green;
       }
     }
   }
