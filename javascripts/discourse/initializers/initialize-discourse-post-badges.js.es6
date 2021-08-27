@@ -4,13 +4,14 @@ import { iconNode } from "discourse-common/lib/icon-library";
 import { schedule } from "@ember/runloop";
 
 function buildBadge(solutions) {
+  const icon = iconNode('check-square');
   const count = document.createElement("span");
   count.innerText = solutions.count;
 
   const span = document.createElement("span");
   span.classList.add("poster-icon");
   span.setAttribute("title", `${solutions.count} accepted answers`);
-  span.appendChild(iconNode('check-square'));
+  span.appendChild(icon);
   span.appendChild(count);
   return span;
 }
