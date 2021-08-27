@@ -19,7 +19,7 @@ async function loadUserSolutions(username, displayedBadges) {
   console.log(username, 'getting solutions');
   const card = await ajax(`/u/${username}/card.json`);
   console.log(username, card);
-  const count = card.accepted_answers;
+  const count = card.user.accepted_answers;
   console.log(username, 'found', count, 'solutions');
   return { username, count };
 }
