@@ -3,6 +3,17 @@ import { withPluginApi } from "discourse/lib/plugin-api";
 import { iconHTML } from "discourse-common/lib/icon-library";
 import { schedule } from "@ember/runloop";
 
+if (Node.prototype.replaceChildren === undefined) {
+  Node.prototype.replaceChildren = function (...nodes) {
+    while (this.lastChild) {
+      this.removeChild(this.lastChild); 
+    }
+    if (nodes !== undefined) {
+      this.append(nodes);
+    }
+  }
+}
+
 function buildBadge(solutions) {
   const icon = iconHTML('check-square');
 
@@ -16,22 +27,18 @@ function buildBadge(solutions) {
 }
 
 async function loadUserSolutions(username, displayedBadges) {
-  console.log(username, 'getting solutions');
   const card = await ajax(`/u/${username}/card.json`);
-  console.log(username, card);
   const count = card.user.accepted_answers;
-  console.log(username, 'found', count, 'solutions');
   return { username, count };
 }
 
 function appendSolutions(solutions, decorator) {
-  console.log('appending', solutions);
   if (solutions.count > 0) {
     const solutionsNode = buildBadge(solutions);
     const selector = `[data-post-id="${decorator.attrs.id}"] .poster-solutions-container`;
     schedule("afterRender", () => {
       const postContainer = document.querySelector(selector);
-      postContainer.appendChild(solutionsNode);
+      postContainer.replaceChildren(solutionsNode);
     });
   }
 }
