@@ -13,7 +13,6 @@ function buildBadge(solutions) {
   badge.classList.add("poster-icon");
   badge.setAttribute("title", `${solutions.count} accepted answers`);
   badge.insertAdjacentHTML('beforeend', icon);
-  badge.lastElementChild.style.color = 'green';
   badge.insertAdjacentText('beforeend', ' ')
   badge.appendChild(count);
   return badge;

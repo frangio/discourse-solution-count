@@ -17,19 +17,23 @@
   }
 
   .poster-solutions-container {
+    display: flex;
     order: 2;
 
     opacity: 1;
-    animation: fadeIn 0.5s ease;
+    animation: fadeIn 0.75s ease;
 
     .poster-icon {
-      overflow: visible;
+      display: flex;
+      align-items: center;
+
       margin: 0 8px 0 0;
       color: var(--primary-med-or-secondary-med);
 
       .d-icon-check-square {
         color: green;
         opacity: .6;
+        margin-right: .25em;
       }
     }
   }
