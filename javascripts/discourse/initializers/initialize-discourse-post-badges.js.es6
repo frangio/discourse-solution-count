@@ -11,7 +11,7 @@ function buildBadge(solutions) {
   const badge = document.createElement("a");
   badge.href = `/u/${solutions.username}/activity/solved`;
   badge.classList.add("poster-icon");
-  badge.setAttribute("title", `${solutions.count} accepted answers`);
+  badge.setAttribute("title", `${solutions.count} accepted answer${solutions.count > 1 ? 's' : ''}`);
   badge.insertAdjacentHTML('beforeend', icon);
   badge.insertAdjacentText('beforeend', ' ')
   badge.appendChild(count);
