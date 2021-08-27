@@ -8,14 +8,15 @@ function buildBadge(solutions) {
   const count = document.createElement("span");
   count.innerText = solutions.count;
 
-  const span = document.createElement("span");
-  span.classList.add("poster-icon");
-  span.setAttribute("title", `${solutions.count} accepted answers`);
-  span.insertAdjacentHTML('beforeend', icon);
-  span.lastElementChild.style.color = 'green';
-  span.insertAdjacentText('beforeend', ' ')
-  span.appendChild(count);
-  return span;
+  const badge = document.createElement("a");
+  badge.href = `/${solutions.username}/activity/solved`;
+  badge.classList.add("poster-icon");
+  badge.setAttribute("title", `${solutions.count} accepted answers`);
+  badge.insertAdjacentHTML('beforeend', icon);
+  badge.lastElementChild.style.color = 'green';
+  badge.insertAdjacentText('beforeend', ' ')
+  badge.appendChild(count);
+  return badge;
 }
 
 async function loadUserSolutions(username, displayedBadges) {
