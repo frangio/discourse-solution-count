@@ -9,7 +9,7 @@ function buildBadge(solutions) {
   count.innerText = solutions.count;
 
   const badge = document.createElement("a");
-  badge.href = `/${solutions.username}/activity/solved`;
+  badge.href = `/u/${solutions.username}/activity/solved`;
   badge.classList.add("poster-icon");
   badge.setAttribute("title", `${solutions.count} accepted answers`);
   badge.insertAdjacentHTML('beforeend', icon);
