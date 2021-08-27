@@ -5,15 +5,12 @@ import { schedule } from "@ember/runloop";
 
 function buildBadge(solutions) {
   const icon = iconHTML('check-square');
-  const count = document.createElement("span");
-  count.innerText = solutions.count;
 
   const badge = document.createElement("a");
   badge.href = `/u/${solutions.username}/activity/solved`;
   badge.classList.add("poster-icon");
   badge.setAttribute("title", `${solutions.count} accepted answer${solutions.count > 1 ? 's' : ''}`);
-  badge.appendChild(count);
-  badge.insertAdjacentText('beforeend', ' ')
+  badge.insertAdjacentText('beforeend', `${count} `)
   badge.insertAdjacentHTML('beforeend', icon);
   return badge;
 }
