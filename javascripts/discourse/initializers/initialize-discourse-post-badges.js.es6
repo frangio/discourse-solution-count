@@ -26,9 +26,17 @@ function buildBadge(solutions) {
   return badge;
 }
 
-async function loadUserSolutions(username, displayedBadges) {
-  const card = await ajax(`/u/${username}/card.json`);
-  const count = card.user.accepted_answers;
+async function loadUserSolutions(username, displayedBadges, cache = new Map()) {
+  let card;
+  if (cache.has(username)) {
+    console.log('cache hit for', username);
+    card = cache.get(username);
+  } else {
+    console.log('cache miss for', username);
+    card = ajax(`/u/${username}/card.json`);
+    setTimeout(60 * 1000, () => cache.delete(username));
+  }
+  const count = (await card).user.accepted_answers;
   return { username, count };
 }
 
@@ -51,10 +59,10 @@ export default {
       const isMobileView = Discourse.Site.currentProp("mobileView");
       const location = isMobileView ? "before" : "after";
 
-      console.log('plugin initialized');
+      const cache = new Map();
       api.decorateWidget(`poster-name:${location}`, decorator => {
         const username = decorator.attrs.username;
-        loadUserSolutions(username).then(solutions =>
+        loadUserSolutions(username, cache).then(solutions =>
           appendSolutions(solutions, decorator)
         );
 
