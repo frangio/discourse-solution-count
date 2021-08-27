@@ -111,6 +111,7 @@ export default {
         .map(badge => badge.toLowerCase());
 
       api.decorateWidget(`poster-name:${location}`, decorator => {
+        console.log(decorator.attrs);
         const username = decorator.attrs.username;
         loadUserBadges(username, displayedBadges).then(badges =>
           appendBadges(badges, decorator)
