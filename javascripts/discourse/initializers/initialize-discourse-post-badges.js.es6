@@ -34,6 +34,7 @@ async function loadUserSolutions(username, displayedBadges, cache = new Map()) {
   } else {
     console.log('cache miss for', username);
     card = ajax(`/u/${username}/card.json`);
+    cache.set(username, card);
     setTimeout(60 * 1000, () => cache.delete(username));
   }
   const count = (await card).user.accepted_answers;
