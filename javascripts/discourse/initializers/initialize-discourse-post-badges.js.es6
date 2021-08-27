@@ -16,13 +16,17 @@ function buildBadge(solutions) {
 }
 
 async function loadUserSolutions(username, displayedBadges) {
+  console.log(username, 'getting solutions');
   const card = await ajax(`/u/${username}/card.json`);
+  console.log(username, card);
   const count = card.accepted_answers;
+  console.log(username, 'found', count, 'solutions');
   return { username, count };
 }
 
 function appendSolutions(solutions, decorator) {
-  if (solutions > 0) {
+  console.log('appending', solutions);
+  if (solutions.count > 0) {
     const solutionsNode = buildBadge(solutions);
     const selector = `[data-post-id="${decorator.attrs.id}"] .poster-solutions-container`;
     schedule("afterRender", () => {
