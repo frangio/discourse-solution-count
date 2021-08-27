@@ -60,6 +60,7 @@ export default {
       const isMobileView = Discourse.Site.currentProp("mobileView");
       const location = isMobileView ? "before" : "after";
 
+      console.log('initialize');
       const cache = new Map();
       api.decorateWidget(`poster-name:${location}`, decorator => {
         const username = decorator.attrs.username;
