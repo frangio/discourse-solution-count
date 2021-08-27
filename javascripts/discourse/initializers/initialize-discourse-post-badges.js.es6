@@ -121,3 +121,5 @@ export default {
     });
   }
 };
+
+// vim: ft=javascript
