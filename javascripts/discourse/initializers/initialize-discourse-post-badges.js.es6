@@ -1,17 +1,17 @@
 import { ajax } from "discourse/lib/ajax";
 import { withPluginApi } from "discourse/lib/plugin-api";
-import { iconNode } from "discourse-common/lib/icon-library";
+import { iconHTML } from "discourse-common/lib/icon-library";
 import { schedule } from "@ember/runloop";
 
 function buildBadge(solutions) {
-  const icon = iconNode('check-square');
+  const icon = iconHTML('check-square');
   const count = document.createElement("span");
   count.innerText = solutions.count;
 
   const span = document.createElement("span");
   span.classList.add("poster-icon");
   span.setAttribute("title", `${solutions.count} accepted answers`);
-  span.appendChild(icon);
+  span.innerHTML = icon;
   span.appendChild(count);
   return span;
 }
