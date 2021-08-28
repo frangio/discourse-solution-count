@@ -26,7 +26,7 @@ function buildBadge(solutions) {
   return badge;
 }
 
-async function loadUserSolutions(username, displayedBadges, cache = new Map()) {
+async function loadUserSolutions(username, cache = new Map()) {
   let card;
   if (cache.has(username)) {
     console.log('cache hit for', username);
@@ -35,7 +35,7 @@ async function loadUserSolutions(username, displayedBadges, cache = new Map()) {
     console.log('cache miss for', username);
     card = ajax(`/u/${username}/card.json`);
     cache.set(username, card);
-    // setTimeout(() => cache.delete(username), 2 * 60 * 1000);
+    setTimeout(() => cache.delete(username), 2 * 60 * 1000);
   }
   const count = (await card).user.accepted_answers;
   return { username, count };
