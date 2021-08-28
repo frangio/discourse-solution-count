@@ -29,10 +29,8 @@ function buildBadge(solutions) {
 async function loadUserSolutions(username, cache = new Map()) {
   let card;
   if (cache.has(username)) {
-    console.log('cache hit for', username);
     card = cache.get(username);
   } else {
-    console.log('cache miss for', username);
     card = ajax(`/u/${username}/card.json`);
     cache.set(username, card);
     setTimeout(() => cache.delete(username), 2 * 60 * 1000);
@@ -60,7 +58,6 @@ export default {
       const isMobileView = Discourse.Site.currentProp("mobileView");
       const location = isMobileView ? "before" : "after";
 
-      console.log('initialize');
       const cache = new Map();
       api.decorateWidget(`poster-name:${location}`, decorator => {
         const username = decorator.attrs.username;
