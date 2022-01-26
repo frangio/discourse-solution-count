@@ -53,9 +53,9 @@ function appendSolutions(solutions, decorator) {
 export default {
   name: "discourse-post-badges",
 
-  initialize() {
+  initialize(container) {
     withPluginApi("0.8.25", api => {
-      const isMobileView = Discourse.Site.currentProp("mobileView");
+      const isMobileView = container.lookup("site:main").mobileView;
       const location = isMobileView ? "before" : "after";
 
       const cache = new Map();
